@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.6.0",
+    "prop-types": "^15.7.2",
     "proptypes": "^1.1.0",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
@@ -11,7 +12,9 @@
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "0.9.5",
-    "react-vis": "^1.11.7"
+    "react-vis": "^1.11.7",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {},
   "scripts": {
