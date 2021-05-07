@@ -1,28 +1,32 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import modalForm from '../components/modalForm';
 
-function DashDisplay({ menu }) {
-  const history = useHistory();
+function DashDisplay({ dash }) {
+  // const history = useHistory();
   
-  // const handleClick = menu => {
-  //   const recipe = menu.strMeal;
+  const handleClick = ind_id => {
+   return (  
+    <modalForm />
+  )
   //   //history.push(`/recipes/${recipe}`);
-  // };
+  };
 
   return (
     <div className="dash-card">
       <div className="dash-card-head">
-        <img className="dash-card-day" src={menu.strMealThumb} alt="date" />
+        <h2>DATE</h2>
       </div>
       <div className="dash-card-data">
         <div className="dash-card-name">
           <h5>{dash.measure}</h5>
-          {/* <button type="button" className="btn btn-show-recipe" onClick={() => handleClick(menu)}>
-            View Recipe
-          </button> */}
+          <button type="button" className="btn" onClick={() => handleClick(1)}>
+            Modal Form
+          </button> 
         </div>
       </div>
+      <modalForm />
     </div>
   );
 }
