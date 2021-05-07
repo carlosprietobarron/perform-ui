@@ -1,12 +1,13 @@
-import { FETCH_INDICATORS_REQUEST, FETCH_INDICATORS_FAILURE, FETCH_INDICATORS_SUCCESS } from '../types/catTypes';
+import axios from 'axios'
+import { FETCH_INDICATORS_REQUEST, FETCH_INDICATORS_FAILURE, FETCH_INDICATORS_SUCCESS } from '../types/IndicatorTypes';
 
 const fetchIndRequest = () => ({
   type: FETCH_INDICATORS_REQUEST,
 });
 
-const fetchIndSuccess = data => ({
+const fetchIndSuccess = response => ({
   type: FETCH_INDICATORS_SUCCESS,
-  payload: data,
+  payload: response,
 });
 
 const fetchIndFailure = error => ({
@@ -19,13 +20,57 @@ const changeFilter = key => ({
   payload: key,
 });
 
-const fetchIndicator = () => dispatch => {
+const fetchIndicators = () => dispatch => {
+  console.log("calling indicators fetch");
   dispatch(fetchIndRequest());
 
-  fetch('http://localhost:3000/indicators')
+  return axios.get('http://localhost:3000/indicators', {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    }
+  })
     .then(response => response.json())
-    .then(data => {
-      dispatch(fetchIndSuccess(data.categories));
+    .then(response => {
+      console.log("data returned");
+      
+      dispatch(fetchIndSuccess(response));
+    })
+    .catch(err => {
+      dispatch(fetchIndFailure(err));
+    });
+};
+
+
+const createIndRequest = () => ({
+  type: CREATE_INDICATORS_REQUEST,
+});
+
+const createIndSuccess = response => ({
+  type: CREATE_INDICATORS_SUCCESS,
+  payload: response,
+});
+
+const createIndFailure = error => ({
+  type: CREATE_INDICATORS_FAILURE,
+  payload: error,
+});
+
+const createIndicators = () => dispatch => {
+  console.log("calling indicators create");
+  //const token = localStorage.getItem('token')
+  dispatch(fetchIndRequest());
+
+  return axios.post('http://localhost:3000/indicators', data, {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    }
+  }).then(response => response.json())
+    .then(response => {
+      console.log("data returned");
+      
+      dispatch(fetchIndSuccess(response));
     })
     .catch(err => {
       dispatch(fetchIndFailure(err));
@@ -33,5 +78,6 @@ const fetchIndicator = () => dispatch => {
 };
 
 export {
-  fetchIndRequest, fetchIndSuccess, fetchIndFailure, fetchIndicator, changeFilter,
+  fetchIndRequest, fetchIndSuccess, fetchIndFailure, fetchIndicators, changeFilter,
+  createIndRequest, createIndSuccess, createIndFailure, createIndicators,
 };

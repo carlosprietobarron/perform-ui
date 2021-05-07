@@ -1,3 +1,5 @@
 export * from './dashboardActions';
-export * from './MeasureActions';
-export * from './IndicatorActions';
+export * from './measureActions';
+export * from './indicatorActions';
+export * from './loginActions';
+export * from './loggedInActions';

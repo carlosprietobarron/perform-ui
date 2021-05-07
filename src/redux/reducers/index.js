@@ -2,12 +2,13 @@ import { combineReducers } from 'redux';
 import dashboardReducer from './dashboardReducer';
 import indicatorReducer from './indicatorReducer';
 import measureReducer from './measureReducer';
-// import recipeReducer from './recipeReducer';
- 
+import loggedInReducer from './loggedInReducer'
+
 const rootReducer = combineReducers({
   indicator: indicatorReducer,
   measure: measureReducer,
-  dashboard: dashboardReducer,   
+  dashboard: dashboardReducer,
+  loggedIn: loggedInReducer, 
 });
 
 export default rootReducer;
