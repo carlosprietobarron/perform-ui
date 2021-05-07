@@ -1,4 +1,4 @@
-import { FETCH_DASHBOARD_REQUEST, FETCH_DASHBOARD_FAILURE, FETCH_DASHBOARD_SUCCESS } from '../types/catTypes';
+import { FETCH_DASHBOARD_REQUEST, FETCH_DASHBOARD_FAILURE, FETCH_DASHBOARD_SUCCESS } from '../types/dashboardTypes';
 
 const fetchDashRequest = () => ({
   type: FETCH_DASHBOARD_REQUEST,
@@ -14,13 +14,13 @@ const fetchDashFailure = error => ({
   payload: error,
 });
 
-const fetchDash = () => dispatch => {
+const fetchDash = indicator => dispatch => {
   dispatch(fetchDashRequest());
-
+  console.log("fetchdash request");
   fetch('http://localhost:3000/indicators/1/measures')
     .then(response => response.json())
     .then(data => {
-      dispatch(fetchDashSuccess(data.DASHBOARD));
+      dispatch(fetchDashSuccess(data));
     })
     .catch(err => {
       dispatch(fetchDashFailure(err));
