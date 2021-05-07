@@ -2,7 +2,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 function IndicatorFilter({ indicators, updateFilter }) {
-  const allCategories = [...indicators];
+  const allindicators = [...indicators];
 
   const handleChange = e => {
     updateFilter(e.target.value);
@@ -13,20 +13,20 @@ function IndicatorFilter({ indicators, updateFilter }) {
     <div>
       <form>
         <select className="ind-filter" id="indicatorFilter" onChange={e => { handleChange(e); }}>
-          {allCategories.map(MakeIndicator)}
+          {allindicators.map(MakeIndicator)}
         </select>
       </form>
     </div>
   );
 }
 
-CategoryFilter.propTypes = {
-  categories: propTypes.arrayOf(propTypes.string),
+IndicatorFilter.propTypes = {
+  indicators: propTypes.arrayOf(propTypes.object),
   updateFilter: propTypes.func.isRequired,
 };
 
-CategoryFilter.defaultProps = {
+IndicatorFilter.defaultProps = {
   categories: [],
 };
 
-export default CategoryFilter;
+export default IndicatorFilter;
