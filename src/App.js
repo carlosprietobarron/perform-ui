@@ -1,40 +1,33 @@
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
+import { Route, Switch, history } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
+import React, { useState } from 'react';
+import Login from './components/login'
+import IndicatorsContainer from './containers/IndicatorsContainer'
+// import AppWrapper from  './containers/AppWrapper'
 
-function App() {
-  const [user, setUser] = useState({
-    email: "test@testing.edu",
-    password: "123456",
-    signed_in: true
-  })
+function App(props) {
 
-  const signin_hdl = user => {
-    setUser({signed_in: !signed_in})
-  }
-
-  return (
-    <div className="App">
-      <div className="top-header">
-        <h1>navbar and login</h1>
+  render() {
+    //const { alert } = this.props;
+    return (
+      <div className="jumbotron">
+        <div className="container">
+          <div className="col-sm-8 col-sm-offset-2">
+            {/* <Router history={history}> */}
+              <div>
+                <switch>
+                  <PrivateRoute exact path="/" component={IndicatorsContainer} />
+                  <Route path="/login" component={LoginPage} />
+                  <Route path="/signup" component={SignUp} />
+                </switch>
+              </div>
+            {/* </Router> */}
+          </div>
+        </div>
       </div>
-      <Switch> 
-      <Route
-        exact
-        path="/"
-        render={() => {
-        return (
-            user.signed_in ?
-            <Redirect to="/indicators" /> :
-            <Redirect to="/login" /> 
-        )
-      }}
-       />
-       <Route exact path="/login" component={Login} />
-       <Route path="/indicators" component={AppWrapper} />
-     </Switch>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
