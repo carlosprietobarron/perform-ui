@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { FETCH_INDICATORS_REQUEST, FETCH_INDICATORS_FAILURE, FETCH_INDICATORS_SUCCESS } from '../types/IndicatorTypes';
+import { FETCH_INDICATORS_REQUEST, FETCH_INDICATORS_FAILURE, FETCH_INDICATORS_SUCCESS,
+          CREATE_INDICATORS_REQUEST, CREATE_INDICATORS_FAILURE, CREATE_INDICATORS_SUCCESS } from '../types/IndicatorTypes';
 
 const fetchIndRequest = () => ({
   type: FETCH_INDICATORS_REQUEST,
@@ -22,6 +23,7 @@ const changeFilter = key => ({
 
 const fetchIndicators = () => dispatch => {
   console.log("calling indicators fetch");
+  const token = localStorage.getItem('token');
   dispatch(fetchIndRequest());
 
   return axios.get('http://localhost:3000/indicators', {
@@ -56,9 +58,9 @@ const createIndFailure = error => ({
   payload: error,
 });
 
-const createIndicators = () => dispatch => {
+const createIndicators = (data) => dispatch => {
   console.log("calling indicators create");
-  //const token = localStorage.getItem('token')
+  const token = localStorage.getItem('token')
   dispatch(fetchIndRequest());
 
   return axios.post('http://localhost:3000/indicators', data, {
