@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { BASEURL } from '../../API/apiData';
-import { CHECK_LOGGED_IN_FAILURE, CHECK_LOGGED_IN_REQUEST, CHECK_LOGGED_IN_SUCCESS } from './loggedInTypes';
+import { BASEURL } from '../apiData';
+import { CHECK_LOGGED_IN_FAILURE, CHECK_LOGGED_IN_REQUEST, CHECK_LOGGED_IN_SUCCESS } from '../types/loggedInTypes';
 
 
 export const checkLoggedInRequest = () => ({
@@ -19,12 +19,13 @@ export const checkLoggedInFailure = error => ({
 export const checkLoggedInStatus = () => dispatch => {
   const token = localStorage.getItem('token')
   dispatch(checkLoggedInRequest());
+  
   return axios.get(`${BASEURL}auto_login`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     }
   })
-    .then(response => dispatch(checkLoggedInSuccess(response.data)))
+    .then(response => dispatch(checkLoggedInSuccess(response)))
     .catch(error => dispatch(checkLoggedInFailure(error.message)));
 };

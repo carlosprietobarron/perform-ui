@@ -1,4 +1,4 @@
-import { CHECK_LOGGED_IN_FAILURE, CHECK_LOGGED_IN_REQUEST, CHECK_LOGGED_IN_SUCCESS } from './loggedInTypes';
+import { CHECK_LOGGED_IN_FAILURE, CHECK_LOGGED_IN_REQUEST, CHECK_LOGGED_IN_SUCCESS } from '../types/loggedInTypes';
 
 const initialState = {
   loading: true,

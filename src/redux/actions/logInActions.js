@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { BASEURL } from '../../API/apiData';
-import { LOG_IN_FAILURE, LOG_IN_REQUEST, LOG_IN_SUCCESS } from './logInTypes';
+import { BASEURL } from '../apiData';
+import { LOG_IN_FAILURE, LOG_IN_REQUEST, LOG_IN_SUCCESS } from '../types/logInTypes';
 
 export const logInRequest = () => ({
   type: LOG_IN_REQUEST,
@@ -16,6 +16,7 @@ export const logInFailure = error => ({
 });
 
 export const logIn = data => dispatch => {
+  console.log(data);
   dispatch(logInRequest());
   return axios.post(`${BASEURL}login`, data)
     .then(response => dispatch(logInSuccess(response.data)))
