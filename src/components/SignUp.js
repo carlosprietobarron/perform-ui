@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { createUser, checkLoggedInStatus } from '../redux';
+import { createUser, checkLoggedInStatus } from '../redux/actions/';
 import { Link } from 'react-router-dom';
 import LoggedInComp from './LoggedInComp';
 
@@ -45,14 +45,14 @@ const SignUp = ({ status, history, isLoggedIn, createUser }) => {
   const showData = () => {
     if (!_.isEmpty(status.data) && status.data.loggedIn) {
       return (
-        <>
+        <div>
           <LoggedInComp username={status.data.user.username} />
-        </>
+        </div>
       );
     }
     if (!_.isEmpty(status.data) && !status.data.loggedIn) {
       return (
-        <>
+        <div>
           <div className="row auth-of">
             <div className="auth-col-height col-md-4 auth-bg">
             </div>
@@ -61,7 +61,7 @@ const SignUp = ({ status, history, isLoggedIn, createUser }) => {
                 <Link to={"/signin"} className='btn auth-btn text-white'>Sign In</Link>
               </div>
               <div className='p-3'>
-                <h1 className='text-white'>WELCOME TO TUC SIGN UP</h1>
+                <h1 className='text-white'>WELCOME TO SIGN UP</h1>
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label htmlFor="username" className="custom-font-b text-white p-2">
@@ -95,17 +95,17 @@ const SignUp = ({ status, history, isLoggedIn, createUser }) => {
               </div>
             </div>
           </div>
-        </>
+        </div>
       )
     }
   }
 
   return (
-    <>
+    <div>
       {
         showData()
       }
-    </>
+    </div>
   )
 }
 
