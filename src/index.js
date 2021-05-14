@@ -8,6 +8,8 @@ import rootReducer from './redux/reducers';
 
 import './index.css';
 import App from './App';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 console.log("index.js")

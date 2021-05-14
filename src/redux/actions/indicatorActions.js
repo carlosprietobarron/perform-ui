@@ -32,11 +32,9 @@ const fetchIndicators = () => dispatch => {
       Authorization: `Bearer ${token}`,
     }
   })
-    .then(response => response.json())
     .then(response => {
-      console.log("data returned");
-      
-      dispatch(fetchIndSuccess(response));
+      console.log(response.data);
+      dispatch(fetchIndSuccess(response.data));
     })
     .catch(err => {
       dispatch(fetchIndFailure(err));

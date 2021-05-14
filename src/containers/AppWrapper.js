@@ -40,23 +40,7 @@ function AppWrapper (props) {
     </div>
   )
 
-
-    // if (status.data.loggedIn)
-
-    //  {
-    //    r<eturn(
-    //    <div>
-    //      App wrapper
-    //      IndicatorsContainer />
-    //    </div>
-    //    );
-    // } else
-    // {
-    //   return(
-    //     <Redirect to ="/login" />
-    //   )
-    // }
-    }
+  }
   
 
   const mapStateToProps = state => ({
