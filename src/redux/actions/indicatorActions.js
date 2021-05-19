@@ -56,7 +56,7 @@ const createIndFailure = error => ({
   payload: error,
 });
 
-const createIndicators = (data) => dispatch => {
+const createIndicator = (data) => dispatch => {
   console.log("calling indicators create");
   const token = localStorage.getItem('token')
   dispatch(fetchIndRequest());
@@ -79,5 +79,5 @@ const createIndicators = (data) => dispatch => {
 
 export {
   fetchIndRequest, fetchIndSuccess, fetchIndFailure, fetchIndicators, changeFilter,
-  createIndRequest, createIndSuccess, createIndFailure, createIndicators,
+  createIndRequest, createIndSuccess, createIndFailure, createIndicator,
 };

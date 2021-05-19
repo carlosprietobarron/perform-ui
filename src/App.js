@@ -17,7 +17,7 @@ function App(props) {
         <div className="container">
           <div className="col-sm-8 col-sm-offset-2">
             {/* <Router history={history}> */}
-              <div>
+              <div className="container">
                 <Switch>
                   <Route exact path="/" component={AppWrapper} />
                   {/* <Route exact path="/Indicators" component={IndicatorsContainer} /> */}

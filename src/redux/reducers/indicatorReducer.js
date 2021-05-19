@@ -1,4 +1,5 @@
-import { FETCH_INDICATORS_REQUEST, FETCH_INDICATORS_FAILURE, FETCH_INDICATORS_SUCCESS } from '../types/IndicatorTypes';
+import { FETCH_INDICATORS_REQUEST, FETCH_INDICATORS_SUCCESS, FETCH_INDICATORS_FAILURE, CHANGE_FILTER,
+  CREATE_INDICATORS_REQUEST, CREATE_INDICATORS_SUCCESS, CREATE_INDICATORS_FAILURE} from '../types/IndicatorTypes';
 
 const initailState = {
   loading: true,
@@ -20,6 +21,23 @@ const indicatorReducer = (state = initailState, action) => {
     };
 
     case FETCH_INDICATORS_FAILURE: return {
+      loading: true,
+      data: [],
+      error: action.payload,
+    };
+
+    case CREATE_INDICATORS_REQUEST: return {
+      ...state,
+      loading: true,
+    };
+
+    case CREATE_INDICATORS_SUCCESS: return {
+      loading: false,
+      data: action.payload,
+      error: '',
+    };
+
+    case CREATE_INDICATORS_FAILURE: return {
       loading: true,
       data: [],
       error: action.payload,
