@@ -11,6 +11,7 @@ import {
 import IndModal from '../components/indModal'
 import Jumbotron from "react-bootstrap/Jumbotron";
 import ControlledCarousel from "../components/ControledCarousel";
+import CalendarChart from '../components/CalendarChart';
 
 function IndicatorsContainer(props) {
   const {
@@ -22,7 +23,6 @@ function IndicatorsContainer(props) {
   const [open, setOpen] = useState(false);
 
   const openModal = () => {
-    console.log("setOpen true");
     setOpen(true)
   }
 
@@ -31,10 +31,6 @@ function IndicatorsContainer(props) {
   }
 
   const renderModal = () => {
-    console.log("renderModal");
-    console.log("indData.data",indData.data);
-    console.log("loggedIn",indData.data.loggedIn);
-    console.log("result",indData.data.result);
     if (!_.isEmpty(indData.data.result) && indData.data.loggedIn){
       console.log("resturn modal open?",  open);
       return (
@@ -44,8 +40,10 @@ function IndicatorsContainer(props) {
     }
   }
 
+  const [idx, setIdx] = useState(0);
+
   const handleSubmit = (name, description, goal) => {
-    console.log("data", name, description, goal);
+    
     const newIndicator = {
       name: name,
       description:description,
@@ -59,6 +57,11 @@ function IndicatorsContainer(props) {
     setTimeout(() => {
      window.location.reload(true);
     }, 1000);
+  }
+
+  const handleSelect = (index) =>{
+     console.log("index selected", index);
+     setIdx(index);
   }
 
   useEffect(() => {
@@ -77,10 +80,11 @@ function IndicatorsContainer(props) {
               <button className="btn auth-btn-b" onClick={openModal}>New Indicator</button>
             </div>
             <h1>INDICATORS</h1>
-            <ControlledCarousel indicators={indData.data.result}/>
+            <ControlledCarousel handleChange={handleSelect} indicators={indData.data.result}/>
           </Jumbotron>
           <div className="chart-display">
             <h1>display chart</h1>
+            <CalendarChart rawData={indData.data.result} idx={idx} />
           </div>
         </div>
       );

@@ -2,21 +2,23 @@ import React, { useState, useEffect } from "react";
 import { Fragment } from "react";
 import Carousel from "react-bootstrap/Carousel";
 
-function ControlledCarousel({ indicators }) {
+function ControlledCarousel({ indicators, handleChange }) {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
+    handleChange(selectedIndex);
   };
 
   useEffect(() => {
-    console.log(indicators);
+    //console.log(indicators);
   }, []);
 
+  
   function setCourousel(ind) {
-    console.log("carousel item", ind)
+    //console.log("carousel item", ind)
     return (
-      <Carousel.Item>
+      <Carousel.Item onSelect={handleSelect}>
         <img
           className="d-block w-100 img-half"
           src="https://i.ibb.co/FBK5y8w/coldcall.jpg"
