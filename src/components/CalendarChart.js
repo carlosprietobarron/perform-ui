@@ -8,6 +8,14 @@ const calendar = (data) => {
     chartdata: [],
   });
 
+  const [minDate, setMinDate] = useState(
+    new Date(2021, 1, 4)
+    )
+  
+  const [maxDate, setMaxDate] = useState(
+      new Date(2021, 1, 6)
+    )
+
   const convertDate =(meas)=>{
     let arr = meas.split("-");
     let ret = [];
@@ -16,22 +24,28 @@ const calendar = (data) => {
     });
     return new Date(ret);
   };
-  const size = useWindowSize();
-  console.log("call calendar", data.measures);
 
-  const chartData = [['Indicator', 'Ocurrencies']];
-  for (let i = 0; i < data.measures.length; i += 1) {
+  const size = useWindowSize();
+  
+  let chartData = [['Indicator', 'Ocurrencies']];
+  if (data.measures.length > 0) {
+    
+    for (let i = 0; i < data.measures.length; i += 1) {
       console.log(convertDate(data.measures[i].day));
       chartData.push([convertDate(data.measures[i].day), data.measures[i].measure])
     }
+  } else {
+    chartData= {};
+  }
+
+  //console.log("chardata", chartData);
   
-  console.log(chartData);
+  //console.log(chartData);
   
   useEffect(() => {
     setkey(prevKey => !prevKey);
     console.log("size", size);
   }, [size.width]);
-
 
   function useWindowSize(defaultValue) {
     const [windowSize, setWindowSize] = useState({
@@ -40,27 +54,38 @@ const calendar = (data) => {
 
     useLayoutEffect(() => {
         setWindowSize({ innerWidth: window.innerWidth });
-        console.log("innerw",innerWidth);
+        console.log("use layout innerw",innerWidth);
+        console.log("size", size);
     }, []);
 
     return windowSize;
 }
-  const windowSize = useWindowSize(900);
-
-  return (
-    <Chart
-    key={key}
-    width={windowSize-50}
-    height={"350px"}
-    chartType="Calendar"
-    loader={<div>Loading Chart</div>}
-    data={chartData}
-    options={{
-      title: "Indicator's Measurements",
-    }}
-    rootProps={{ "data-testid": "1" }}
-  />
-  )
+  const windowSize = useWindowSize("70%");
+  
+  if (data.measures.length < 1) {
+    return (
+      <div>
+        <h3>There is no Data</h3>
+      </div>
+    )
+  } else {
+    
+    return (
+      <Chart
+        key={key}
+        width={windowSize}
+        height={"100%"}
+        chartType="Calendar"
+        loader={<div>Loading Chart</div>}
+        data={chartData}
+        options={{
+          title: "Indicator's Measurements",
+          explorer: {axis: 'horizontal'},
+        }}
+        rootProps={{ "data-testid": "1" }}
+      />
+    );
+  }
 };
 
 function CalendarChart({rawData, idx}) {
@@ -68,44 +93,10 @@ function CalendarChart({rawData, idx}) {
   console.log("raw data", rawData[idx]);
    
  return (
-    <div>
+    <div className="chart_data_display">
       {calendar(rawData[idx])}
     </div>
   );
 }
 
 export default CalendarChart;
-
-
-
-// [
-//   [
-//     { type: "date", id: "Date" },
-//     { type: "number", id: "Won/Loss" },
-//   ],
-//   [new Date(2012, 3, 13), 37032],
-//   [new Date(2012, 3, 14), 38024],
-//   [new Date(2012, 3, 15), 38024],
-//   [new Date(2012, 3, 16), 38108],
-//   [new Date(2012, 3, 17), 38229],
-//   [new Date(2013, 1, 4), 38177],
-//   [new Date(2013, 1, 5), 38705],
-//   [new Date(2013, 1, 12), 38210],
-//   [new Date(2013, 1, 13), 38029],
-//   [new Date(2013, 1, 19), 38823],
-//   [new Date(2013, 1, 23), 38345],
-//   [new Date(2013, 1, 24), 38436],
-//   [new Date(2013, 2, 10), 38447],
-// ]
-
-
-
-
-
-
-
-
-
-
-
-

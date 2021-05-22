@@ -29,11 +29,11 @@ function Login(props) {
         const result = response.payload;
         console.log(response);
         if (result.status === "created") {
-          localStorage.setItem('token', result.token)
+         
           setTimeout(() => {
-            console.log("call history");
+            localStorage.setItem('token', result.token)
             history.push('/');
-          }, 2000);
+          }, 5000);
         }
         else if (result.status === 401) {
           alert(result.message)

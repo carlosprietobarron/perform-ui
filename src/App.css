@@ -25,3 +25,10 @@
 .img-half {
   opacity: 0.5;
 }
+
+.chart_data_display svg {
+  overflow: visible !important;
+}
+.chart {
+  overflow: hidden;
+}
