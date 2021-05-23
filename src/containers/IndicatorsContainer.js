@@ -20,6 +20,7 @@ function IndicatorsContainer(props) {
 
   const [open, setOpen] = useState(false);
   const [openM, setOpenM] = useState(false);
+  const [parent, setParent] = useState(0);
 
   const openModal = () => {
     setOpen(true);
@@ -53,10 +54,10 @@ function IndicatorsContainer(props) {
 
   const renderMeModal = () => {
     if (!_.isEmpty(indData.data.result) && indData.data.loggedIn) {
-      console.log("resturn modal open?", openM);
       return (
         //<div>empty div</div>
         <MeasModal
+          indId = {parent}
           closeModal={closeMeModal}
           isOpen={openM}
           handleSubmit={handleSubmitMe}
@@ -83,12 +84,12 @@ function IndicatorsContainer(props) {
     }, 1000);
   };
 
-  const handleSubmitMe = (day, measure, comentary) => {
-    const indId = indData.data.result.id;
+  const handleSubmitMe = (day, measure, comentary, indId) => {
     const newMeasure = {
       day: day,
       measure: measure,
       comentary: comentary,
+      indicator_id: indId
       };
 
     console.log("newMeasure", newMeasure);
@@ -102,6 +103,11 @@ function IndicatorsContainer(props) {
   const handleSelect = (index) => {
     console.log("index selected", index);
     setIdx(index);
+    if (!openM) {
+      const i = indData.data.result[index].id
+      console.log("setparent to", i);
+      setParent(i)
+    }
   };
 
   useEffect(() => {

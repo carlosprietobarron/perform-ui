@@ -38,13 +38,9 @@ const calendar = (data) => {
     chartData= {};
   }
 
-  //console.log("chardata", chartData);
-  
-  //console.log(chartData);
-  
   useEffect(() => {
     setkey(prevKey => !prevKey);
-    console.log("size", size);
+    //console.log("size", size);
   }, [size.width]);
 
   function useWindowSize(defaultValue) {
@@ -54,8 +50,8 @@ const calendar = (data) => {
 
     useLayoutEffect(() => {
         setWindowSize({ innerWidth: window.innerWidth });
-        console.log("use layout innerw",innerWidth);
-        console.log("size", size);
+        // console.log("use layout innerw",innerWidth);
+        // console.log("size", size);
     }, []);
 
     return windowSize;

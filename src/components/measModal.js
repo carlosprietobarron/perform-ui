@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
-const MeasModal = ({ closeModal, isOpen, handleSubmit }) => {
+const MeasModal = ({ indId, closeModal, isOpen, handleSubmit }) => {
   const [day, setDay] = useState("");
   const [measure, setMeasure] = useState(0);
   const [notes, setNotes] = useState("");
   
   const handleFormSubmit = (event) => {
-    console.log("handle submit", day, measure, notes);
-    handleSubmit(day, measure, notes);
+    console.log("handle submit", day, measure, notes, indId);
+    handleSubmit(day, measure, notes, indId);
     closeModal();
     setDay("");
     setNotes("");
@@ -21,6 +21,8 @@ const MeasModal = ({ closeModal, isOpen, handleSubmit }) => {
     
   };
   
+  console.log("props", indId, isOpen, closeModal);
+
   return (
     <Modal show={isOpen} onHide={closeModal}>
       <Modal.Header className="bg-dark text-white" closeButton>

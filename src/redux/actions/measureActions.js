@@ -44,7 +44,7 @@ const fetchMeasures = () => (dispatch) => {
     });
 };
 
-const createIndRequest = () => ({
+const createMeasRequest = () => ({
   type: CREATE_MEASURES_REQUEST,
 });
 
@@ -59,7 +59,7 @@ const createMeasFailure = error => ({
 });
 
 const createMeasure = (data, indId) => dispatch => {
-  console.log(`http://localhost:3000/indicators/${indId}/measures`);
+  alert(`http://localhost:3000/indicators/${indId}/measures`);
   const token = localStorage.getItem('token')
   dispatch(fetchMeasRequest());
 
@@ -79,4 +79,5 @@ const createMeasure = (data, indId) => dispatch => {
     });
 };
 
-export { fetchMeasRequest, fetchMeasSuccess, fetchMeasFailure, fetchMeasures };
+export { fetchMeasRequest, fetchMeasSuccess, fetchMeasFailure, fetchMeasures,
+  createMeasRequest, createMeasSuccess, createMeasFailure, createMeasure };
