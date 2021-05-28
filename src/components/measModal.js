@@ -21,8 +21,6 @@ const MeasModal = ({ indId, closeModal, isOpen, handleSubmit }) => {
     
   };
   
-  console.log("props", indId, isOpen, closeModal);
-
   return (
     <Modal show={isOpen} onHide={closeModal}>
       <Modal.Header className="bg-dark text-white" closeButton>

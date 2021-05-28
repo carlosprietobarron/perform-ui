@@ -14,10 +14,10 @@ import MeasModal from "../components/measModal"
 import Jumbotron from "react-bootstrap/Jumbotron";
 import ControlledCarousel from "../components/ControledCarousel";
 import CalendarChart from "../components/CalendarChart";
+import GaugeChart from "../components/gaugeChart";
 
 function IndicatorsContainer(props) {
   const { indData, measData, fetchInd, createIndicator, createMeasure } = props;
-
   const [open, setOpen] = useState(false);
   const [openM, setOpenM] = useState(false);
   const [parent, setParent] = useState(0);
@@ -39,8 +39,8 @@ function IndicatorsContainer(props) {
   };
 
   const renderModal = () => {
-    if (!_.isEmpty(indData.data.result) && indData.data.loggedIn) {
-      console.log("resturn modal open?", open);
+  if (!_.isEmpty(indData.data.result) && indData.data.loggedIn) {
+      //console.log("resturn modal open?", open);
       return (
         //<div>empty div</div>
         <IndModal
@@ -57,7 +57,7 @@ function IndicatorsContainer(props) {
       return (
         //<div>empty div</div>
         <MeasModal
-          indId = {parent}
+          indId={parent}
           closeModal={closeMeModal}
           isOpen={openM}
           handleSubmit={handleSubmitMe}
@@ -76,9 +76,9 @@ function IndicatorsContainer(props) {
       image: "fields_attributes",
     };
 
-    console.log("newIndicator", newIndicator);
+    //console.log("newIndicator", newIndicator);
 
-    createIndicator(newIndicator);
+  createIndicator(newIndicator);
     setTimeout(() => {
       window.location.reload(true);
     }, 1000);
@@ -90,22 +90,20 @@ function IndicatorsContainer(props) {
       measure: measure,
       comentary: comentary,
       indicator_id: indId
-      };
+    };
 
-    console.log("newMeasure", newMeasure);
-
-    createMeasure(newMeasure, indId) ;
+    createMeasure(newMeasure, indId);
     setTimeout(() => {
       window.location.reload(true);
     }, 1000);
   };
 
   const handleSelect = (index) => {
-    console.log("index selected", index);
+    //console.log("index selected", index);
     setIdx(index);
     if (!openM) {
       const i = indData.data.result[index].id
-      console.log("setparent to", i);
+      //console.log("setparent to", i);
       setParent(i)
     }
   };
@@ -116,9 +114,9 @@ function IndicatorsContainer(props) {
 
   const showData = () => {
     if (!_.isEmpty(indData.data.result)) {
-      console.log(indData.data.result);
       return (
         <div>
+          
           <Jumbotron className="headerApp">
             <div className="d-flex justify-content-between p-3">
               <button className="btn auth-btn-b" onClick={openModal}>
@@ -138,7 +136,18 @@ function IndicatorsContainer(props) {
               </button>
             </div>
             <CalendarChart rawData={indData.data.result} idx={idx} />
+            <GaugeChart rawData={indData.data.result} idx={idx} />
           </div>
+          <footer className="d-flex justify-content-between text-white p-4">
+            <div className="nav-left">
+              <h4 className="m-2">Performance Tracking</h4>
+            </div>
+            <div className="nav-right">
+              <i className="fab fa-facebook-square fa-2x m-2"></i>
+              <i className="fab fa-twitter fa-2x m-2"></i>
+              <i className="fab fa-instagram fa-2x m-2"></i>
+            </div>
+          </footer>
         </div>
       );
     }

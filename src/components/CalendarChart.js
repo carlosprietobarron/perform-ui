@@ -31,7 +31,7 @@ const calendar = (data) => {
   if (data.measures.length > 0) {
     
     for (let i = 0; i < data.measures.length; i += 1) {
-      console.log(convertDate(data.measures[i].day));
+      //console.log(convertDate(data.measures[i].day));
       chartData.push([convertDate(data.measures[i].day), data.measures[i].measure])
     }
   } else {
@@ -69,7 +69,7 @@ const calendar = (data) => {
     return (
       <Chart
         key={key}
-        width={windowSize}
+        width={"800px"}
         height={"100%"}
         chartType="Calendar"
         loader={<div>Loading Chart</div>}
@@ -86,7 +86,7 @@ const calendar = (data) => {
 
 function CalendarChart({rawData, idx}) {
 
-  console.log("raw data", rawData[idx]);
+ // console.log("raw data", rawData[idx]);
    
  return (
     <div className="chart_data_display">

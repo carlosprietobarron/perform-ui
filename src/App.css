@@ -26,6 +26,10 @@
   opacity: 0.5;
 }
 
+.chart_data_display {
+  overflow-x: scroll;
+}
+
 .chart_data_display svg {
   overflow: visible !important;
 }
