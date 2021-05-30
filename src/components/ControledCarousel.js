@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Fragment } from "react";
 import Carousel from "react-bootstrap/Carousel";
 
 function ControlledCarousel({ indicators, handleChange }) {

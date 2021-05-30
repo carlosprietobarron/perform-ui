@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {connect} from 'react-redux'
-import { Redirect, Route, useHistory } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import _ from 'lodash';
 import { checkLoggedInStatus} from '../redux/actions'
 import IndicatorsContainer from './IndicatorsContainer';
 
 function AppWrapper (props) {
-  let history = useHistory();
+  // let history = useHistory();
   //console.log(props);
   const {status, isLoggedIn} = props;
   
@@ -29,7 +29,7 @@ function AppWrapper (props) {
      {
       console.log(status.data.data); 
        return(
-         <Redirect to ="/login" />
+         <Redirect to="/login" />
        )
      }
   }

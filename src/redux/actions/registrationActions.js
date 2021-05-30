@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASEURL } from '../../API/apiData';
+import { BASEURL } from '../apiData';
 import { CREATE_USER_FAILURE, CREATE_USER_REQUEST, CREATE_USER_SUCCESS } from '../types/registrationTypes';
 
 export const createUserRequest = () => ({
@@ -17,6 +17,7 @@ export const createUserFailure = error => ({
 });
 
 export const createUser = data => dispatch => {
+  console.log(data);
   dispatch(createUserRequest());
   return axios.post(`${BASEURL}users`, data)
     .then(response => {

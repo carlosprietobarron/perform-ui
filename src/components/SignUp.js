@@ -18,7 +18,7 @@ const SignUp = ({ status, history, isLoggedIn, createUser }) => {
 
   const handleSubmit = event => {
     const userData = {
-      username: username,
+      name: username,
       email: email,
       password: password,
       password_confirmation: passwordConfirmation
@@ -58,7 +58,7 @@ const SignUp = ({ status, history, isLoggedIn, createUser }) => {
             </div>
             <div className="auth-col-height bg-dark col-md-8 d-flex flex-column">
               <div className="d-flex justify-content-between p-3">
-                <Link to={"/signin"} className='btn auth-btn text-white'>Sign In</Link>
+                <Link to={"/login"} className='btn auth-btn text-white'>Sign In</Link>
               </div>
               <div className='p-3'>
                 <h1 className='text-white'>WELCOME TO SIGN UP</h1>

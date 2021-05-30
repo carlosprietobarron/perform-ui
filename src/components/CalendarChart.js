@@ -3,24 +3,24 @@ import Chart from "react-google-charts";
 
 const calendar = (data) => {
   const [key, setkey] = useState();
-  const [state, setState] = useState({
-    status: "loading",
-    chartdata: [],
-  });
+  // const [state, setState] = useState({
+  //   status: "loading",
+  //   chartdata: [],
+  // });
 
-  const [minDate, setMinDate] = useState(
-    new Date(2021, 1, 4)
-    )
+  // const [minDate, setMinDate] = useState(
+  //   new Date(2021, 1, 4)
+  //   )
   
-  const [maxDate, setMaxDate] = useState(
-      new Date(2021, 1, 6)
-    )
+  // const [maxDate, setMaxDate] = useState(
+  //     new Date(2021, 1, 6)
+  //   )
 
   const convertDate =(meas)=>{
     let arr = meas.split("-");
     let ret = [];
     arr.forEach(item => {
-      ret.push(parseInt(item));
+      ret.push(parseInt(item, 10));
     });
     return new Date(ret);
   };
@@ -56,7 +56,7 @@ const calendar = (data) => {
 
     return windowSize;
 }
-  const windowSize = useWindowSize("70%");
+  //const windowSize = useWindowSize("90%");
   
   if (data.measures.length < 1) {
     return (

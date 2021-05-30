@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
 const MeasModal = ({ indId, closeModal, isOpen, handleSubmit }) => {
@@ -16,10 +16,10 @@ const MeasModal = ({ indId, closeModal, isOpen, handleSubmit }) => {
     event.preventDefault();
   };
 
-  const handleChange = () => {
-    //const values = [...inputFields];
+  // const handleChange = () => {
+  //   //const values = [...inputFields];
     
-  };
+  // };
   
   return (
     <Modal show={isOpen} onHide={closeModal}>

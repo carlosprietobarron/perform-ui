@@ -1,11 +1,11 @@
 import './App.css';
-import { Route, Switch, history } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 //import { Redirect } from 'react-router-dom'
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Login from './components/login';
 import SignUp from './components/SignUp';
 import AppWrapper from './containers/AppWrapper';
-import IndicatorsContainer from './containers/IndicatorsContainer';
+//import IndicatorsContainer from './containers/IndicatorsContainer';
 // import AppWrapper from  './containers/AppWrapper'
 
 function App(props) {
@@ -20,7 +20,6 @@ function App(props) {
               <div className="container">
                 <Switch>
                   <Route exact path="/" component={AppWrapper} />
-                  {/* <Route exact path="/Indicators" component={IndicatorsContainer} /> */}
                   <Route path="/login" component={Login} />
                   <Route path="/signup" component={SignUp} />
                 </Switch>

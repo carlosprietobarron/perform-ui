@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {Link} from 'react-router-dom'
 import _ from "lodash";
 import { connect } from "react-redux";
 import {
@@ -15,12 +16,37 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import ControlledCarousel from "../components/ControledCarousel";
 import CalendarChart from "../components/CalendarChart";
 import GaugeChart from "../components/gaugeChart";
+import Navbar from '../components/Navbar'
 
 function IndicatorsContainer(props) {
-  const { indData, measData, fetchInd, createIndicator, createMeasure } = props;
+  const { indData, fetchInd, createIndicator, createMeasure, isLoggedIn, status } = props;
   const [open, setOpen] = useState(false);
   const [openM, setOpenM] = useState(false);
   const [parent, setParent] = useState(0);
+
+  useEffect(() => {
+    isLoggedIn();
+  }, [isLoggedIn]);
+
+  const showBtns = () => {
+    if (!status.loggedIn) {
+      return (
+        <div>
+          <Link to={"/signup"} className="navbar-brand auth-btn-c text-dark">SIGN UP HERE</Link>
+          {/* <a className="navbar-brand auth-btn-c text-dark" href="#features">EXPLORE FEATURES</a> */}
+        </div>
+      )
+    }
+    else {
+      return (
+        <div>
+          <h3 className="text-white m-3">Welcome @{status.user.username}</h3>
+          {/* <a className="navbar-brand auth-btn-c text-dark" href="#features">EXPLORE FEATURES</a> */}
+        </div>
+      )
+    }
+  }
+
 
   const openModal = () => {
     setOpen(true);
@@ -38,8 +64,35 @@ function IndicatorsContainer(props) {
     setOpenM(false);
   };
 
+  const handleSubmitMe = (day, measure, comentary, indId) => {
+    const newMeasure = {
+      day: day,
+      measure: measure,
+      comentary: comentary,
+      indicator_id: indId
+    };
+
+    createMeasure(newMeasure, indId);
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 1000);
+  };
+
+  const handleSubmit = (name, description, goal) => {
+    const newIndicator = {
+      name: name,
+      description: description,
+      goal: goal,
+      image: "fields_attributes",
+    };
+    createIndicator(newIndicator);
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 1000);
+  };
+
   const renderModal = () => {
-  if (!_.isEmpty(indData.data.result) && indData.data.loggedIn) {
+    if (!_.isEmpty(indData.data.result) && indData.data.loggedIn) {
       //console.log("resturn modal open?", open);
       return (
         //<div>empty div</div>
@@ -68,36 +121,6 @@ function IndicatorsContainer(props) {
 
   const [idx, setIdx] = useState(0);
 
-  const handleSubmit = (name, description, goal) => {
-    const newIndicator = {
-      name: name,
-      description: description,
-      goal: goal,
-      image: "fields_attributes",
-    };
-
-    //console.log("newIndicator", newIndicator);
-
-  createIndicator(newIndicator);
-    setTimeout(() => {
-      window.location.reload(true);
-    }, 1000);
-  };
-
-  const handleSubmitMe = (day, measure, comentary, indId) => {
-    const newMeasure = {
-      day: day,
-      measure: measure,
-      comentary: comentary,
-      indicator_id: indId
-    };
-
-    createMeasure(newMeasure, indId);
-    setTimeout(() => {
-      window.location.reload(true);
-    }, 1000);
-  };
-
   const handleSelect = (index) => {
     //console.log("index selected", index);
     setIdx(index);
@@ -113,10 +136,21 @@ function IndicatorsContainer(props) {
   }, []);
 
   const showData = () => {
+    console.log("loggedIn ", status.data);
     if (!_.isEmpty(indData.data.result)) {
       return (
         <div>
-          
+          <Navbar loggedIn={status.data.loggedIn} />
+          <div id='intro' className="section-a bg-dark">
+            <div className="container text-center text-white p-5">
+              <h1 className="mt-1, mb-1">PERFORMANCE TRACKING</h1>
+              <div>
+                {
+                  showBtns()
+                }
+              </div>
+            </div>
+          </div>
           <Jumbotron className="headerApp">
             <div className="d-flex justify-content-between p-3">
               <button className="btn auth-btn-b" onClick={openModal}>

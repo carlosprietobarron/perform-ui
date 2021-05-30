@@ -60,7 +60,7 @@ const SignIn = ({ status, history, login, isLoggedIn }) => {
               </div>
               <div className='row p-5'>
                 <div className="col-md-5 text-center">
-                  <h1 className='text-white'>WELCOME <br /> TO <br />  TUC LOGIN</h1>
+                  <h1 className='text-white'>WELCOME <br /> TO <br /> LOGIN</h1>
                 </div>
                 <div className="col-md-7">
                   <form onSubmit={handleSubmit}>
@@ -77,6 +77,7 @@ const SignIn = ({ status, history, login, isLoggedIn }) => {
                       <input className="form-control" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required />
                     </div>
                     <button className="btn btn-success mt-3 text-dark auth-btn-b" type="submit">Sign In</button>
+                    <button className="btn btn-success mt-3 text-dark auth-btn-b" type="submit">Sign Up</button>
                   </form>
                 </div>
               </div>

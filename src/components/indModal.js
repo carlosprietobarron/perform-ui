@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 
 const IndModal = ({ closeModal, isOpen, handleSubmit }) => {
@@ -15,12 +15,7 @@ const IndModal = ({ closeModal, isOpen, handleSubmit }) => {
     setGoal("");
     event.preventDefault();
   };
-
-  const handleChange = () => {
-    //const values = [...inputFields];
-    
-  };
-  
+ 
   return (
     <Modal show={isOpen} onHide={closeModal}>
       <Modal.Header className="bg-dark text-white" closeButton>

@@ -16,11 +16,6 @@ const fetchIndFailure = error => ({
   payload: error,
 });
 
-const changeFilter = key => ({
-  type: 'CHANGE_FILTER',
-  payload: key,
-});
-
 const fetchIndicators = () => dispatch => {
   console.log("calling indicators fetch");
   const token = localStorage.getItem('token');
@@ -78,6 +73,6 @@ const createIndicator = (data) => dispatch => {
 };
 
 export {
-  fetchIndRequest, fetchIndSuccess, fetchIndFailure, fetchIndicators, changeFilter,
+  fetchIndRequest, fetchIndSuccess, fetchIndFailure, fetchIndicators,
   createIndRequest, createIndSuccess, createIndFailure, createIndicator,
 };
