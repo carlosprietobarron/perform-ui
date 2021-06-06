@@ -16,7 +16,7 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import ControlledCarousel from "../components/ControledCarousel";
 import CalendarChart from "../components/CalendarChart";
 import GaugeChart from "../components/gaugeChart";
-import Navbar from '../components/Navbar'
+import Navbar from '../components/Navbar';
 
 function IndicatorsContainer(props) {
   const { indData, fetchInd, createIndicator, createMeasure, isLoggedIn, status } = props;
@@ -29,7 +29,8 @@ function IndicatorsContainer(props) {
   }, [isLoggedIn]);
 
   const showBtns = () => {
-    if (!status.loggedIn) {
+    console.log("status", status);
+    if (!status.data.loggedIn) {
       return (
         <div>
           <Link to={"/signup"} className="navbar-brand auth-btn-c text-dark">SIGN UP HERE</Link>
@@ -39,14 +40,13 @@ function IndicatorsContainer(props) {
     }
     else {
       return (
-        <div>
-          <h3 className="text-white m-3">Welcome @{status.user.username}</h3>
+        <div id="welcome"> 
+          <h3 className="text-white m-3">Welcome @{status.data.user.name}</h3>
           {/* <a className="navbar-brand auth-btn-c text-dark" href="#features">EXPLORE FEATURES</a> */}
         </div>
       )
     }
   }
-
 
   const openModal = () => {
     setOpen(true);
@@ -142,7 +142,7 @@ function IndicatorsContainer(props) {
         <div>
           <Navbar loggedIn={status.data.loggedIn} />
           <div id='intro' className="section-a bg-dark">
-            <div className="container text-center text-white p-5">
+            <div className="container text-center text-white">
               <h1 className="mt-1, mb-1">PERFORMANCE TRACKING</h1>
               <div>
                 {
@@ -151,18 +151,17 @@ function IndicatorsContainer(props) {
               </div>
             </div>
           </div>
-          <Jumbotron className="headerApp">
-            <div className="d-flex justify-content-between p-3">
+          
+            <div  id="measure_menu" className="d-flex justify-content-between">
               <button className="btn auth-btn-b" onClick={openModal}>
                 New Indicator
               </button>
             </div>
-            <h1>INDICATORS</h1>
             <ControlledCarousel
               handleChange={handleSelect}
               indicators={indData.data.result}
             />
-          </Jumbotron>
+         
           <div className="chart-display">
             <div className="d-flex justify-content-between p-3">
               <button className="btn auth-btn-b" onClick={openMeModal}>

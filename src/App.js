@@ -13,9 +13,9 @@ function App(props) {
    
     //const { alert } = this.props;
     return (
-      <div className="jumbotron">
+      
         <div className="container">
-          <div className="col-sm-8 col-sm-offset-2">
+          <div className="col-sm-12">
             {/* <Router history={history}> */}
               <div className="container">
                 <Switch>
@@ -27,7 +27,7 @@ function App(props) {
             {/* </Router> */}
           </div>
         </div>
-      </div>
+      
     );
   };
 

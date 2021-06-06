@@ -2,22 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
 .Dark-Text {
   color: black;
 }
@@ -26,8 +10,14 @@
   opacity: 0.5;
 }
 
+#intro{
+    width: 100%;
+    height: 50px;
+}
+
 .chart_data_display {
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .chart_data_display svg {
@@ -35,4 +25,35 @@
 }
 .chart {
   overflow: hidden;
+}
+
+.navbar{
+  background-color:  #3c96f7;
+}
+
+#measure_menu {
+  background-color:  #3c96f7;
+}
+
+#welcome {
+  margin-top: -12px;
+}
+
+@media (max-width: 769px) {
+  #intro h1 {
+    font-size: x-large;
+  }
+
+  .carousel-caption {
+    bottom: -1.75rem !important;
+  }
+  
+  #welcome {
+    margin-top: 10;
+    margin-left: 100px;
+  }
+
+  #welcome h3 {
+    font-size: medium;
+  }
 }

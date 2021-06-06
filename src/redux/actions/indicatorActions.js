@@ -52,7 +52,7 @@ const createIndFailure = error => ({
 });
 
 const createIndicator = (data) => dispatch => {
-  console.log("calling indicators create");
+  
   const token = localStorage.getItem('token')
   dispatch(fetchIndRequest());
 
@@ -63,8 +63,6 @@ const createIndicator = (data) => dispatch => {
     }
   }).then(response => response.json())
     .then(response => {
-      console.log("data returned");
-      
       dispatch(fetchIndSuccess(response));
     })
     .catch(err => {

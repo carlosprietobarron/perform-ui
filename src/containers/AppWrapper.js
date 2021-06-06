@@ -6,12 +6,8 @@ import { checkLoggedInStatus} from '../redux/actions'
 import IndicatorsContainer from './IndicatorsContainer';
 
 function AppWrapper (props) {
-  // let history = useHistory();
-  //console.log(props);
   const {status, isLoggedIn} = props;
   
-  //const [loggedIn, setLoggedIn] = useState(false);
-
   useEffect(() => {
     isLoggedIn();
     

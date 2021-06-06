@@ -17,7 +17,7 @@ const Navbar = ({loggedIn}) => {
     if(loggedIn) {
       return (
         <div>
-         <Link to={"/categories"} className="navbar-brand text-white">Indicators</Link>
+         <Link to={"/"} className="navbar-brand text-white">Indicators</Link>
          <button className="btn auth-btn-b" type="button" onClick={handleLogout}>Logout</button>
         </div>
       )
@@ -36,7 +36,7 @@ const Navbar = ({loggedIn}) => {
       <nav className="navbar">
         <div className="nav-left">
           {/* <img className="nav-logo" src={logo} alt={"logo"} /> */}
-          <Link to={"/"} className="navbar-brand text-white">PERFORMANCE</Link>
+          <Link to={"/"} className="navbar-brand text-white">c a p b</Link>
         </div>
         <div className="nav-right">
          {

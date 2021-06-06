@@ -11,7 +11,7 @@ function Login(props) {
   let history = useHistory();
 
   console.log("component login");
-  const { login } = props;
+  const { login, isLoggedIn } = props;
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
@@ -33,7 +33,8 @@ function Login(props) {
           setTimeout(() => {
             localStorage.setItem('token', result.token)
             history.push('/');
-          }, 5000);
+          }, 3000);
+          isLoggedIn();
         }
         else if (result.status === 401) {
           alert(result.message)
