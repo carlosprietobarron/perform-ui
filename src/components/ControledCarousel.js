@@ -20,7 +20,7 @@ function ControlledCarousel({ indicators, handleChange }) {
       <Carousel.Item onSelect={handleSelect}>
         <img
           className="d-block w-100 img-half"
-          src="https://i.ibb.co/FBK5y8w/coldcall.jpg"
+          src="https://i.ibb.co/N9W4h0b/coldcallsmall.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
