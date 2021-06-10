@@ -32,9 +32,12 @@ function Login(props) {
 
           setTimeout(() => {
             localStorage.setItem('token', result.token)
-            history.push('/');
+            isLoggedIn().then 
+            {
+               history.push('/');
+            }
           }, 3000);
-          isLoggedIn();
+          
         }
         else if (result.status === 401) {
           alert(result.message)

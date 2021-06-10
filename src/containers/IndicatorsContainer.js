@@ -171,7 +171,7 @@ function IndicatorsContainer(props) {
             <CalendarChart rawData={indData.data.result} idx={idx} />
             <GaugeChart rawData={indData.data.result} idx={idx} />
           </div>
-          <footer className="d-flex justify-content-between text-white p-4">
+          <footer className="d-flex justify-content-between text-blue p-4">
             <div className="nav-left">
               <h4 className="m-2">Performance Tracking</h4>
             </div>
