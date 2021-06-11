@@ -12,7 +12,6 @@ import {
 } from "../redux/actions";
 import IndModal from "../components/indModal";
 import MeasModal from "../components/measModal"
-import Jumbotron from "react-bootstrap/Jumbotron";
 import ControlledCarousel from "../components/ControledCarousel";
 import CalendarChart from "../components/CalendarChart";
 import GaugeChart from "../components/gaugeChart";
@@ -29,7 +28,7 @@ function IndicatorsContainer(props) {
   }, [isLoggedIn]);
 
   const showBtns = () => {
-    console.log("status", status);
+    
     if (!status.data.loggedIn) {
       return (
         <div>
@@ -93,7 +92,7 @@ function IndicatorsContainer(props) {
 
   const renderModal = () => {
     if (!_.isEmpty(indData.data.result) && indData.data.loggedIn) {
-      //console.log("resturn modal open?", open);
+ 
       return (
         //<div>empty div</div>
         <IndModal
@@ -122,11 +121,9 @@ function IndicatorsContainer(props) {
   const [idx, setIdx] = useState(0);
 
   const handleSelect = (index) => {
-    //console.log("index selected", index);
     setIdx(index);
     if (!openM) {
       const i = indData.data.result[index].id
-      //console.log("setparent to", i);
       setParent(i)
     }
   };
@@ -136,7 +133,7 @@ function IndicatorsContainer(props) {
   }, []);
 
   const showData = () => {
-    console.log("loggedIn ", status.data);
+    
     if (!_.isEmpty(indData.data.result)) {
       return (
         <div>

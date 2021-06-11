@@ -39,12 +39,7 @@ const gauge = (data) => {
     const day1 = {...data.measures.find(m => JustADate(convertDate(m.day)).toString() === JustADate(date3).toString())}
 
     chartData=[['Day', 'Ocurrencies']]
-    console.log("day1", day1);
-    console.log("date3", date3.toDateString());
-    console.log("day2", day2);
-    console.log("date2", format(date2));
-    console.log("day3", day3);
-    console.log("date1", date1);
+    
     if (!badEmptyCheck(day1)) 
        {chartData.push([day1.day, day1.measure]);}
     else 
@@ -59,13 +54,6 @@ const gauge = (data) => {
        {chartData.push([day3.day, day3.measure])}
     else 
        {chartData.push([format(date3), 0]);}
-
-    //  chartData=[
-    //      ['Day', 'Ocurrencies'],
-    //      [day1.day, day1.measure],
-    //      [day2.day, day2.measure],
-    //      [day3.day, day3.measure],
-    //    ];
 
   } else {
     chartData= [
@@ -85,15 +73,15 @@ const gauge = (data) => {
   } else {
    return (
         <Chart
-        width={400}
-        height={120}
+        width={350}
+        height={105}
         chartType="Gauge"
         loader={<div>Loading Chart</div>}
         data={chartData}
         options={{
           redFrom: 0,
-          redTo: 5,
-          yellowFrom: 6,
+          redTo: Math.round(data.goal * 0.5),
+          yellowFrom: Math.round(data.goal * 0.5),
           yellowTo: data.goal,
           minorTicks: 5,
         }}

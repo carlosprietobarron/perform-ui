@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import Chart from "react-google-charts";
+import { JustADate } from "./utility";
 
 const calendar = (data) => {
   const [key, setkey] = useState();
@@ -13,52 +14,57 @@ const calendar = (data) => {
     return new Date(ret);
   };
 
+  const convertRawDAte = (rawDate) => {
+    const rawdata=rawDate.split("/")
+    const year=rawdata[2];
+    const month=rawdata[0];
+    const day=rawdata[1];
+    return year + "-" + month + "-" + day
+  }
+
   const size = useWindowSize();
 
   let chartData = [['Indicator', 'Ocurrencies']];
   
   if (data.measures.length > 0) {
-
+    
     for (let i = 0; i < data.measures.length; i += 1) {
-      //console.log(convertDate(data.measures[i].day));
       chartData.push([convertDate(data.measures[i].day), data.measures[i].measure])
     }
   } else {
-    chartData = {};
+    const rawDate = JustADate(Date.now()).toLocaleDateString()
+    
+    const useDate = convertRawDAte(rawDate);
+    
+    chartData.push([convertDate(useDate), 0])
+    
   }
-
+  
   const [chartSize, setChartSize] = useState("1200px");
   const [sqrSize, setSqrSize] = useState(12);
 
   useEffect(() => {
     setkey(prevKey => !prevKey);
-    console.log("size", size);
 
     if (size.width > 1000) {
-      console.log("bp1", size.width);
       setSqrSize(15);
       setChartSize("1200px");
     } else {
       if (860 < size.width <= 1000) {
-        console.log("bp2", size.width);
         setSqrSize(11);
         setChartSize("1000px");
       } else {
         if (760 < size.width <= 860) {
-          console.log("bp3", size.width);
           setSqrSize(9);
           setChartSize("700px");
         } else {
           if (size.width <= 760) {
-            console.log("bp4", size.width);
             setSqrSize(8);
             setChartSize("400px");
           };
         }
       }
     }
-
-    console.log("sqr and chart size", sqrSize, chartSize);
 
   }, [size.width]);
 
@@ -70,7 +76,6 @@ const calendar = (data) => {
       width: undefined,
       height: undefined,
     });
-    console.log("windowsSize", windowSize);
     useEffect(() => {
       // Handler to call on window resize
       function handleResize() {
@@ -94,26 +99,9 @@ const calendar = (data) => {
     return windowSize;
   }
 
+  //data.measures.length < 1
 
-  // function useWindowSize(defaultValue) {
-  //   const [windowSize, setWindowSize] = useState({
-  //       innerWidth: defaultValue
-  //   });
-
-  //   console.log("windowssize", windowSize);
-  //   console.log("innerwidth", window.innerWidth );
-
-  //   useLayoutEffect(() => {
-  //       setWindowSize({ innerWidth: window.innerWidth });
-  //       console.log("use layout innerw",innerWidth);
-  //       // console.log("size", size);
-  //   }, [window.innerWidth]);
-
-  //   return windowSize;
-  // }
-  //const windowSize = useWindowSize("90%");
-
-  if (data.measures.length < 1) {
+  if (false) {
     return (
       <div>
         <h3>There is no Data</h3>
@@ -141,8 +129,6 @@ const calendar = (data) => {
 };
 
 function CalendarChart({ rawData, idx }) {
-
-  // console.log("raw data", rawData[idx]);
 
   return (
     <div className="chart_data_display">

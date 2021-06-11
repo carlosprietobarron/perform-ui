@@ -17,7 +17,6 @@ const fetchIndFailure = error => ({
 });
 
 const fetchIndicators = () => dispatch => {
-  console.log("calling indicators fetch");
   const token = localStorage.getItem('token');
   dispatch(fetchIndRequest());
 
@@ -28,7 +27,6 @@ const fetchIndicators = () => dispatch => {
     }
   })
     .then(response => {
-      console.log(response.data);
       dispatch(fetchIndSuccess(response.data));
     })
     .catch(err => {

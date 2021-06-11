@@ -15,7 +15,6 @@ function AppWrapper (props) {
   
   const showData = () =>{
     if (!_.isEmpty(status.data.data) && (status.data.data.loggedIn)) {
-      console.log(status.data.data); 
       return(
             <div>
               <IndicatorsContainer />
@@ -23,7 +22,6 @@ function AppWrapper (props) {
             ); 
     }else if (!_.isEmpty(status.data.data) && (!status.data.data.loggedIn))
      {
-      console.log(status.data.data); 
        return(
          <Redirect to="/login" />
        )
