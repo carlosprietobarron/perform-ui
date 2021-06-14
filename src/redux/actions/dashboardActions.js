@@ -1,4 +1,5 @@
 import { FETCH_DASHBOARD_REQUEST, FETCH_DASHBOARD_FAILURE, FETCH_DASHBOARD_SUCCESS } from '../types/dashboardTypes';
+import { BASEURL } from '../apiData';
 
 const fetchDashRequest = () => ({
   type: FETCH_DASHBOARD_REQUEST,
@@ -17,7 +18,7 @@ const fetchDashFailure = error => ({
 const fetchDash = indicator => dispatch => {
   dispatch(fetchDashRequest());
   console.log("fetchdash request");
-  fetch('http://localhost:3000/indicators/1/measures')
+  fetch(`${BASEURL}ndicators/1/measures`)
     .then(response => response.json())
     .then(data => {
       dispatch(fetchDashSuccess(data));

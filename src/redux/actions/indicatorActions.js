@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { BASEURL } from '../apiData';
 import { FETCH_INDICATORS_REQUEST, FETCH_INDICATORS_FAILURE, FETCH_INDICATORS_SUCCESS,
           CREATE_INDICATORS_REQUEST, CREATE_INDICATORS_FAILURE, CREATE_INDICATORS_SUCCESS } from '../types/IndicatorTypes';
 
@@ -20,7 +21,7 @@ const fetchIndicators = () => dispatch => {
   const token = localStorage.getItem('token');
   dispatch(fetchIndRequest());
 
-  return axios.get('http://localhost:3000/indicators', {
+  return axios.get(`${BASEURL}indicators`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
@@ -54,7 +55,7 @@ const createIndicator = (data) => dispatch => {
   const token = localStorage.getItem('token')
   dispatch(fetchIndRequest());
 
-  return axios.post('http://localhost:3000/indicators', data, {
+  return axios.post(`${BASEURL}indicators`, data, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,

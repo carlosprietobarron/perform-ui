@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { BASEURL } from '../apiData';
 import {
   FETCH_MEASURES_REQUEST,
   FETCH_MEASURES_FAILURE,
@@ -27,7 +28,7 @@ const fetchMeasures = () => (dispatch) => {
   dispatch(fetchMeasRequest());
   const token = localStorage.getItem('token');
   return axios
-    .get("http://localhost:3000/indicators", {
+    .get(`${BASEURL}/indicators`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -59,11 +60,13 @@ const createMeasFailure = error => ({
 });
 
 const createMeasure = (data, indId) => dispatch => {
-  alert(`http://localhost:3000/indicators/${indId}/measures`);
+  alert(`${BASEURL}indicators/${indId}/measures`);
   const token = localStorage.getItem('token')
   dispatch(fetchMeasRequest());
+  
+  console.log(`${BASEURL}indicators/${indId}/measures`, data);
 
-  return axios.post(`http://localhost:3000/indicators/${indId}/measures`, data, {
+  return axios.post(`${BASEURL}indicators/${indId}/measures`, data, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
