@@ -193,7 +193,7 @@ function IndicatorsContainer(props) {
 }
 
 const mapStateToProps = (state) => ({
-  status: state.loggedIn.data,
+  status: state.loggedIn,
   indData: state.indicator,
   measData: state.measure,
   dashData: state.dashboard,

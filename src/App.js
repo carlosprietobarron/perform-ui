@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 //import { Redirect } from 'react-router-dom'
 import React from 'react';
 import Login from './components/login';
@@ -16,7 +16,7 @@ function App(props) {
       
         <div className="container">
           <div className="col-sm-12">
-            {/* <Router history={history}> */}
+            <Router history={history}> 
               <div className="container">
                 <Switch>
                   <Route exact path="/" component={AppWrapper} />
@@ -24,7 +24,7 @@ function App(props) {
                   <Route path="/signup" component={SignUp} />
                 </Switch>
               </div>
-            {/* </Router> */}
+             </Router> 
           </div>
         </div>
       

@@ -10,7 +10,6 @@ import { useHistory } from 'react-router-dom';
 function Login(props) {
   let history = useHistory();
 
-  console.log("component login");
   const { login, isLoggedIn } = props;
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -27,16 +26,13 @@ function Login(props) {
     login(userData)
       .then(response => {
         const result = response.payload;
-        console.log(response);
+        console.log("login response", response);
+        console.log("login result", result);
         if (result.status === "created") {
-
-          setTimeout(() => {
-            localStorage.setItem('token', result.token)
-            isLoggedIn().then 
-            {
-               history.push('/');
-            }
-          }, 3000);
+          localStorage.setItem('token', result.token)
+            isLoggedIn().then(() => {
+              history.push('/');
+            });
           
         }
         else if (result.status === 401) {

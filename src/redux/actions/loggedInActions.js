@@ -26,6 +26,6 @@ export const checkLoggedInStatus = () => dispatch => {
       Authorization: `Bearer ${token}`,
     }
   })
-    .then(response => dispatch(checkLoggedInSuccess(response)))
+    .then(response => dispatch(checkLoggedInSuccess(response.data)))
     .catch(error => dispatch(checkLoggedInFailure(error.message)));
 };
