@@ -14,10 +14,10 @@ function App(props) {
     //const { alert } = this.props;
     return (
       
-        <div className="container">
-          <div className="col-sm-12">
+        <div id="app-caontainer "className="row">
+          <div id="col12-displaycomp" className="col-sm-12">
             <Router history={history}> 
-              <div className="container">
+              <div>
                 <Switch>
                   <Route exact path="/" component={AppWrapper} />
                   <Route path="/login" component={Login} />

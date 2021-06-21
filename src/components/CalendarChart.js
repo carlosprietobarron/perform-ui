@@ -15,56 +15,84 @@ const calendar = (data) => {
   };
 
   const convertRawDAte = (rawDate) => {
-    const rawdata=rawDate.split("/")
-    const year=rawdata[2];
-    const month=rawdata[0];
-    const day=rawdata[1];
+    const rawdata = rawDate.split("/")
+    const year = rawdata[2];
+    const month = rawdata[0];
+    const day = rawdata[1];
     return year + "-" + month + "-" + day
   }
 
   const size = useWindowSize();
 
   let chartData = [['Indicator', 'Ocurrencies']];
-  
+
   if (data.measures.length > 0) {
-    
+
     for (let i = 0; i < data.measures.length; i += 1) {
       chartData.push([convertDate(data.measures[i].day), data.measures[i].measure])
     }
   } else {
     const rawDate = JustADate(Date.now()).toLocaleDateString()
-    
+
     const useDate = convertRawDAte(rawDate);
-    
+
     chartData.push([convertDate(useDate), 0])
-    
+
   }
-  
+
   const [chartSize, setChartSize] = useState("1200px");
   const [sqrSize, setSqrSize] = useState(12);
 
   useEffect(() => {
     setkey(prevKey => !prevKey);
-
-    if (size.width > 1000) {
-      setSqrSize(15);
+    if (size.width > 1440) {
+      setSqrSize(27);
       setChartSize("1200px");
     } else {
-      if (860 < size.width <= 1000) {
-        setSqrSize(11);
-        setChartSize("1000px");
+      if (size.width > 1330) {
+        setSqrSize(25);
+        setChartSize("1200px");
       } else {
-        if (760 < size.width <= 860) {
-          setSqrSize(9);
-          setChartSize("700px");
+        if (size.width > 1220) {
+          setSqrSize(22);
+          setChartSize("1200px");
         } else {
-          if (size.width <= 760) {
-            setSqrSize(8);
-            setChartSize("400px");
-          };
+          if (size.width > 1030) {
+            setSqrSize(18);
+            setChartSize("1200px");
+          } else {
+            if (size.width > 880) {
+              setSqrSize(15);
+              setChartSize("1000px");
+            } else {
+              if (size.width > 765) {
+                setSqrSize(13);
+                setChartSize("1000px");
+              } else {
+
+                if (size.width > 644) {
+                  setSqrSize(11);
+                  setChartSize("1000px");
+
+                } else {
+                  if (size.width > 590) {
+                    setSqrSize(10);
+                    setChartSize("800px");
+                  } else {
+                    if (size.width <= 589) {
+                      setSqrSize(9);
+                      setChartSize("800px");
+                    };
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
+
+
 
   }, [size.width]);
 

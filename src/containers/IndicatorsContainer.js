@@ -136,7 +136,7 @@ function IndicatorsContainer(props) {
     
     if (!_.isEmpty(indData.data.result)) {
       return (
-        <div>
+        <div id="indicatorContainer">
           <Navbar loggedIn={status.data.loggedIn} />
           <div id='intro' className="section-a bg-dark">
             <div className="container text-center text-white">
@@ -158,9 +158,8 @@ function IndicatorsContainer(props) {
               handleChange={handleSelect}
               indicators={indData.data.result}
             />
-         
-          <div className="chart-display">
-            <div className="d-flex justify-content-between p-3">
+          <div className="chart-display col-md-12">
+            <div id="btn-bar-measure" className="d-flex justify-content-between p-3">
               <button className="btn auth-btn-b" onClick={openMeModal}>
                 New Measure
               </button>

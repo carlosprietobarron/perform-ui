@@ -1,3 +1,7 @@
+body {
+  font-family: "Sans Serif";
+}
+
 .App {
   text-align: center;
 }
@@ -15,6 +19,14 @@
     height: 50px;
 }
 
+.carousel-item {
+  max-height: 130px;
+}
+
+.carousel-inner {
+  background-color: #3c96f7;
+}
+
 .chart_data_display {
   overflow-x: scroll;
   overflow-y: hidden;
@@ -23,6 +35,7 @@
 .chart_data_display svg {
   overflow: visible !important;
 }
+
 .chart {
   overflow: hidden;
 }
