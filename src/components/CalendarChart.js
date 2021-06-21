@@ -42,47 +42,63 @@ const calendar = (data) => {
 
   const [chartSize, setChartSize] = useState("1200px");
   const [sqrSize, setSqrSize] = useState(12);
+  const [chartHeight, setchartHeight] = useState("350px")
 
   useEffect(() => {
     setkey(prevKey => !prevKey);
-    if (size.width > 1440) {
-      setSqrSize(27);
+    if (size.width > 1560) {
+      setSqrSize(28);
       setChartSize("1200px");
+      setchartHeight("350px");
     } else {
-      if (size.width > 1330) {
-        setSqrSize(25);
+      if (size.width > 1480) {
+        setSqrSize(26);
         setChartSize("1200px");
+        setchartHeight("330px")
       } else {
-        if (size.width > 1220) {
-          setSqrSize(22);
+        if (size.width > 1320) {
+          setSqrSize(24);
           setChartSize("1200px");
+          setchartHeight("320px")
         } else {
-          if (size.width > 1030) {
-            setSqrSize(18);
+          if (size.width > 1220) {
+            setSqrSize(22);
             setChartSize("1200px");
+            setchartHeight("300px")
           } else {
-            if (size.width > 880) {
-              setSqrSize(15);
-              setChartSize("1000px");
+            if (size.width > 1030) {
+              setSqrSize(18);
+              setChartSize("1200px");
+              setchartHeight("290px")
             } else {
-              if (size.width > 765) {
-                setSqrSize(13);
+              if (size.width > 880) {
+                setSqrSize(15);
                 setChartSize("1000px");
+                setchartHeight("260px")
               } else {
-
-                if (size.width > 644) {
-                  setSqrSize(11);
+                if (size.width > 765) {
+                  setSqrSize(13);
                   setChartSize("1000px");
-
+                  setchartHeight("240px")
                 } else {
-                  if (size.width > 590) {
-                    setSqrSize(10);
-                    setChartSize("800px");
+
+                  if (size.width > 644) {
+                    setSqrSize(11);
+                    setChartSize("1000px");
+                    setchartHeight("220px")
+
                   } else {
-                    if (size.width <= 589) {
-                      setSqrSize(9);
+                    if (size.width > 590) {
+                      setSqrSize(10);
                       setChartSize("800px");
-                    };
+                      setchartHeight("200px")
+                    } else {
+                      if (size.width <= 589) {
+                        setSqrSize(9);
+                        setChartSize("800px");
+                        setchartHeight("150px")
+                      };
+                    }
                   }
                 }
               }
@@ -90,6 +106,7 @@ const calendar = (data) => {
           }
         }
       }
+
     }
 
 
@@ -141,7 +158,7 @@ const calendar = (data) => {
       <Chart
         key={key}
         width={chartSize}
-        height={"100%"}
+        height={chartHeight}
         chartType="Calendar"
         loader={<div>Loading Chart</div>}
         data={chartData}
