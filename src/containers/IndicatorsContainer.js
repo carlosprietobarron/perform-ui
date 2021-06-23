@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import _ from "lodash";
 import { connect } from "react-redux";
 import {
@@ -15,6 +15,7 @@ import MeasModal from "../components/measModal"
 import ControlledCarousel from "../components/ControledCarousel";
 import CalendarChart from "../components/CalendarChart";
 import GaugeChart from "../components/gaugeChart";
+import ProgressChart from "../components/ProgressChart"
 import Navbar from '../components/Navbar';
 
 function IndicatorsContainer(props) {
@@ -22,13 +23,14 @@ function IndicatorsContainer(props) {
   const [open, setOpen] = useState(false);
   const [openM, setOpenM] = useState(false);
   const [parent, setParent] = useState(0);
+  const [average, setAverage] = useState(0);
 
   useEffect(() => {
     isLoggedIn();
   }, [isLoggedIn]);
 
   const showBtns = () => {
-    
+
     if (!status.data.loggedIn) {
       return (
         <div>
@@ -39,7 +41,7 @@ function IndicatorsContainer(props) {
     }
     else {
       return (
-        <div id="welcome"> 
+        <div id="welcome">
           <h3 className="text-white m-3">Welcome @{status.data.user.name}</h3>
           {/* <a className="navbar-brand auth-btn-c text-dark" href="#features">EXPLORE FEATURES</a> */}
         </div>
@@ -92,7 +94,7 @@ function IndicatorsContainer(props) {
 
   const renderModal = () => {
     if (!_.isEmpty(indData.data.result) && indData.data.loggedIn) {
- 
+
       return (
         //<div>empty div</div>
         <IndModal
@@ -120,10 +122,27 @@ function IndicatorsContainer(props) {
 
   const [idx, setIdx] = useState(0);
 
+  const averageDay = measures => {
+    //console.log("calc average");
+    //console.log("measure", measures);
+    if (measures.length == 0) {
+      return 0;
+    }
+    const average = Math.trunc(measures.reduce((total, next) => total + next.measure, 0) / measures.length);
+    //console.log(average);
+
+    return average
+
+  }
+
   const handleSelect = (index) => {
     setIdx(index);
     if (!openM) {
       const i = indData.data.result[index].id
+      const goalInd = indData.data.result[index].goal
+      const aveg = averageDay(indData.data.result[index].measures);
+      setAverage(aveg)
+      console.log("goal vs average....", goalInd, aveg);
       setParent(i)
     }
   };
@@ -133,8 +152,9 @@ function IndicatorsContainer(props) {
   }, []);
 
   const showData = () => {
-    
+
     if (!_.isEmpty(indData.data.result)) {
+      console.log("indData", indData.data.result);
       return (
         <div id="indicatorContainer">
           <Navbar loggedIn={status.data.loggedIn} />
@@ -148,16 +168,16 @@ function IndicatorsContainer(props) {
               </div>
             </div>
           </div>
-          
-            <div  id="measure_menu" className="d-flex justify-content-between">
-              <button className="btn auth-btn-b" onClick={openModal}>
-                New Indicator
-              </button>
-            </div>
-            <ControlledCarousel
-              handleChange={handleSelect}
-              indicators={indData.data.result}
-            />
+
+          <div id="measure_menu" className="d-flex justify-content-between">
+            <button className="btn auth-btn-b" onClick={openModal}>
+              New Indicator
+            </button>
+          </div>
+          <ControlledCarousel
+            handleChange={handleSelect}
+            indicators={indData.data.result}
+          />
           <div className="chart-display col-md-12">
             <div id="btn-bar-measure" className="d-flex justify-content-between p-3">
               <button className="btn auth-btn-b" onClick={openMeModal}>
@@ -165,7 +185,16 @@ function IndicatorsContainer(props) {
               </button>
             </div>
             <CalendarChart rawData={indData.data.result} idx={idx} />
-            <GaugeChart rawData={indData.data.result} idx={idx} />
+            <div id="charts-row">
+              <div>
+                <h5>Last Three Days</h5>
+              <GaugeChart rawData={indData.data.result} idx={idx} />
+              </div>
+              <div id="progress-div">
+                <h5>Average Performance</h5>
+                 <ProgressChart rawData={indData.data.result} idx={idx} aver={average} />
+              </div>
+            </div>
           </div>
           <footer className="d-flex justify-content-between text-blue p-4">
             <div className="nav-left">
