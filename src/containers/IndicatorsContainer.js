@@ -186,12 +186,12 @@ function IndicatorsContainer(props) {
             </div>
             <CalendarChart rawData={indData.data.result} idx={idx} />
             <div id="charts-row">
-              <div>
+              <div id="gauge-div">
                 <h5>Last Three Days</h5>
               <GaugeChart rawData={indData.data.result} idx={idx} />
               </div>
               <div id="progress-div">
-                <h5>Average Performance</h5>
+                <h5>Average</h5>
                  <ProgressChart rawData={indData.data.result} idx={idx} aver={average} />
               </div>
             </div>
