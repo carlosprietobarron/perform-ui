@@ -47,8 +47,14 @@ body {
     align-items: center;
   }
 }
+#gauge-div {
+  text-align: center;
+}
 
 #progress-div{
+  max-width: 120px;
+  min-width: 80px;
+  text-align: center;
   width: 20%;
 }
 
