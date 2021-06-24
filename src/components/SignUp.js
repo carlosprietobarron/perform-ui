@@ -53,44 +53,43 @@ const SignUp = ({ status, history, isLoggedIn, createUser }) => {
     if (!_.isEmpty(status.data) && !status.data.loggedIn) {
       return (
         <div>
-          <div className="row auth-of">
-            <div className="auth-col-height col-md-4 auth-bg">
-            </div>
-            <div className="auth-col-height bg-dark col-md-8 d-flex flex-column">
-              <div className="d-flex justify-content-between p-3">
-                <Link to={"/login"} className='btn auth-btn text-white'>Sign In</Link>
+          <div className="signing-form">
+            
+            <div>
+              <div className="signing-form-header">
+                <Link to={"/login"} className='btn auth-btn text-white'>Please Sign In!</Link>
               </div>
-              <div className='p-3'>
-                <h1 className='text-white'>WELCOME TO SIGN UP</h1>
+              <div>
+                <h1 className='text-black'>WELCOME TO SIGN UP</h1>
                 <form onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <label htmlFor="username" className="custom-font-b text-white p-2">
+                    <label htmlFor="username" className="custom-font-b text-black p-2">
                       Username
-                </label>
+                    </label>
                     <input className="form-control" type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} required />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="email" className="custom-font-b text-white p-2">
+                    <label htmlFor="email" className="custom-font-b text-black p-2">
                       Email
-                </label>
+                    </label>
                     <input className="form-control" type="text" name="email" value={email} onChange={e => setEmail(e.target.value)} required />
                   </div>
                   <div className="form-group">
-                    <label htmlFor="password" className="w-50 custom-font-b text-white p-2">
+                    <label htmlFor="password" className="w-50 custom-font-b text-black p-2">
                       Password
-                </label>
+                    </label>
                     <input className="form-control" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} required />
-                    <small id="passwordHelpBlock" className="form-text text-white">
+                    <small id="passwordHelpBlock" className="form-text text-black">
                       Your password must be 6-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-                </small>
+                    </small>
                   </div>
                   <div className="form-group">
-                    <label htmlFor="password_confirmation" className="w-50 custom-font-b text-white p-2">
+                    <label htmlFor="password_confirmation" className="w-50 custom-font-b text-black p-2">
                       Password confirmation
-                 </label>
+                    </label>
                     <input className="form-control" type="password" name="password_confirmation" value={passwordConfirmation} onChange={e => setPasswordConfirmation(e.target.value)} required />
                   </div>
-                  <button className="btn btn-success mt-3 text-dark auth-btn-b" type="submit">Sign Up</button>
+                  <button className="btn btn-primary mt-3 text-white auth-btn-b" type="submit">Sign Up</button>
                 </form>
               </div>
             </div>

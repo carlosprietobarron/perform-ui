@@ -73,8 +73,8 @@ const gauge = (data) => {
   } else {
    return (
         <Chart
-        width={350}
-        height={105}
+        width={450}
+        height={145}
         chartType="Gauge"
         loader={<div>Loading Chart</div>}
         data={chartData}

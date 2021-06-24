@@ -51,16 +51,17 @@ function Login(props) {
   }
 
   return (
-    <div className="container row auth-of">
-      <div className="auth-col-height col-md-4 auth-bg">
-      </div>
-      <div className="auth-col-height bg-dark col-md-8 d-flex flex-column mb-2">
-        <div className='p-3'>
-          <div className="d-flex justify-content-between p-3">
-            <Link to={"/signup"} className='btn auth-btn text-white'>Sign Up</Link>
+    <div>
+      <div></div>
+      <div>
+        <div className="signing-form">
+          <div className="signing-form-header">
+            <Link to={"/signup"} className='btn auth-btn text-white'>Please Sign Up</Link>
           </div>
-          <h1 className='text-white'>WELCOME TO LOGIN</h1>
+          <div className="form-div">
+          <h1 className='text-black'>WELCOME TO LOGIN</h1>
           <Form onSubmit={handleSubmit}>
+            
             <Form.Group controlId="formBasicInput">
               <Form.Label>User Name</Form.Label>
               <Form.Control type="text" placeholder="Enter user name" value={name} onChange={e => setName(e.target.value)} />
@@ -74,13 +75,10 @@ function Login(props) {
             <Button variant="primary" type="submit">
               Submit
             </Button>
-            {/* <Button variant="warning" onClick={handleCallSigUp} type="button">
-              Sign UP
-            </Button> */}
+            
           </Form>
-
+          </div>
         </div>
-
       </div>
     </div>
 

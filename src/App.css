@@ -1,5 +1,6 @@
 body {
   font-family: "Sans Serif";
+  overflow-x: hidden;
 }
 
 .App {
@@ -52,8 +53,8 @@ body {
 }
 
 #progress-div{
-  max-width: 120px;
-  min-width: 80px;
+  max-width: 130px;
+  min-width: 130px;
   text-align: center;
   width: 20%;
 }
@@ -76,6 +77,23 @@ body {
 
 #welcome {
   margin-top: -12px;
+}
+
+.signing-form {
+    width: 50%;
+    margin-left: 25%;
+}
+
+@media (max-width: 910px) {
+  .signing-form {
+    width: 90%;
+    margin-left: 5%;
+}
+}
+
+.signing-form-header {
+  background-color: #3c96f7;
+  width: 100%;
 }
 
 @media (max-width: 769px) {
