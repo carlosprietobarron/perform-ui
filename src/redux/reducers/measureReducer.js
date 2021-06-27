@@ -1,5 +1,7 @@
-import { FETCH_MEASURES_REQUEST, FETCH_MEASURES_FAILURE, FETCH_MEASURES_SUCCESS,
-  CREATE_MEASURES_REQUEST, CREATE_MEASURES_FAILURE, CREATE_MEASURES_SUCCESS } from '../types/IndicatorTypes';
+import {
+  FETCH_MEASURES_REQUEST, FETCH_MEASURES_FAILURE, FETCH_MEASURES_SUCCESS,
+  CREATE_MEASURES_REQUEST, CREATE_MEASURES_FAILURE, CREATE_MEASURES_SUCCESS,
+} from '../types/measuresTypes';
 
 const initailState = {
   loading: true,
@@ -42,7 +44,6 @@ const measureReducer = (state = initailState, action) => {
       data: [],
       error: action.payload,
     };
-
 
     default: return state;
   }

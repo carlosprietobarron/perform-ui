@@ -6,19 +6,18 @@ export const logInRequest = () => ({
   type: LOG_IN_REQUEST,
 });
 
-export const logInSuccess = response => ({
+export const logInSuccess = (response) => ({
   type: LOG_IN_SUCCESS,
   payload: response,
 });
-export const logInFailure = error => ({
+export const logInFailure = (error) => ({
   type: LOG_IN_FAILURE,
   payload: error,
 });
 
-export const logIn = data => dispatch => {
-  console.log(data);
+export const logIn = (data) => (dispatch) => {
   dispatch(logInRequest());
   return axios.post(`${BASEURL}login`, data)
-    .then(response => dispatch(logInSuccess(response.data)))
-    .catch(error => dispatch(logInFailure(error)));
+    .then((response) => dispatch(logInSuccess(response.data)))
+    .catch((error) => dispatch(logInFailure(error)));
 };

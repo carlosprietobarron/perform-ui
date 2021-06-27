@@ -5,25 +5,24 @@ const fetchDashRequest = () => ({
   type: FETCH_DASHBOARD_REQUEST,
 });
 
-const fetchDashSuccess = data => ({
+const fetchDashSuccess = (data) => ({
   type: FETCH_DASHBOARD_SUCCESS,
   payload: data,
 });
 
-const fetchDashFailure = error => ({
+const fetchDashFailure = (error) => ({
   type: FETCH_DASHBOARD_FAILURE,
   payload: error,
 });
 
-const fetchDash = indicator => dispatch => {
+const fetchDash = () => (dispatch) => {
   dispatch(fetchDashRequest());
-  console.log("fetchdash request");
   fetch(`${BASEURL}ndicators/1/measures`)
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       dispatch(fetchDashSuccess(data));
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch(fetchDashFailure(err));
     });
 };

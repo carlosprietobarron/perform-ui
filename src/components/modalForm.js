@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap';
 import Modal from 'react-bootstrap';
 
@@ -9,7 +9,7 @@ function modalForm() {
   const handleShow = () => setShow(true);
   return (
     <div>
-            <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={handleShow}>
         Launch demo modal
       </Button>
 
@@ -28,7 +28,7 @@ function modalForm() {
         </Modal.Footer>
       </Modal>
     </div>
-  )
+  );
 }
 
-export default modalForm
+export default modalForm;

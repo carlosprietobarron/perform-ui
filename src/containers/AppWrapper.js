@@ -1,55 +1,49 @@
+/* eslint-disable max-len, react/prop-types, no-alert */
 import React, { useEffect } from 'react';
-import {connect} from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
-import { checkLoggedInStatus} from '../redux/actions'
+import { checkLoggedInStatus } from '../redux/actions';
 import IndicatorsContainer from './IndicatorsContainer';
-import { useHistory } from 'react-router-dom';
 
+function AppWrapper(props) {
+  const { status, isLoggedIn } = props;
 
-function AppWrapper (props) {
-  const {status, isLoggedIn} = props;
-  let history = useHistory();
-  
   useEffect(() => {
     isLoggedIn();
-    console.log("inside useeffect", status.data);
   }, []);
- 
-  const showData = () =>{
-    console.log("status at wrapper showdata",status.data);
-    console.log("is logedin", isLoggedIn);
+
+  const showData = () => {
     if (!_.isEmpty(status.data) && (status.data.loggedIn)) {
-      return(
-            <div>
-              <IndicatorsContainer />
-            </div>
-            ); 
-    }else if (!_.isEmpty(status.data) && (!status.data.loggedIn))
-     {
-       console.log("before returning to login", status.data);
-       return(
-         <Redirect to="/login" />
-        //  <h1>PLASE LOG IN TO CONTINUE</h1>
-       )
-     }
-  }
+      return (
+        <div>
+          <IndicatorsContainer />
+        </div>
+      );
+    } if (!_.isEmpty(status.data) && (!status.data.loggedIn)) {
+      return (
+        <Redirect to="/login" />
+      //  <h1>PLASE LOG IN TO CONTINUE</h1>
+      );
+    }
+    return '';
+  };
 
   return (
     <div>
       {showData()}
     </div>
-  )
+  );
+}
 
-  }
-  
+const mapStateToProps = (state) => ({
+  status: state.loggedIn,
+});
 
-  const mapStateToProps = state => ({
-    status: state.loggedIn,
-  });
-  
-  const mapDispatchToProps = dispatch => ({
-    isLoggedIn: () => {dispatch(checkLoggedInStatus())},
-  });
-  
-export default connect(mapStateToProps, mapDispatchToProps)(AppWrapper)
+const mapDispatchToProps = (dispatch) => ({
+  isLoggedIn: () => { dispatch(checkLoggedInStatus()); },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppWrapper);
+
+/* eslint-enable max-len, react/prop-types, no-alert */

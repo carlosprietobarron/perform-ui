@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import Modal from "react-bootstrap/Modal";
+/* eslint-disable max-len, react/prop-types, jsx-a11y/label-has-associated-control */
+
+import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
 
 const IndModal = ({ closeModal, isOpen, handleSubmit }) => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [goal, setGoal] = useState("");
-  
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [goal, setGoal] = useState('');
+
   const handleFormSubmit = (event) => {
-    console.log("handlge submit", name, description, goal);
     handleSubmit(name, description, goal);
     closeModal();
-    setName("");
-    setDescription("");
-    setGoal("");
+    setName('');
+    setDescription('');
+    setGoal('');
     event.preventDefault();
   };
- 
+
   return (
     <Modal show={isOpen} onHide={closeModal}>
       <Modal.Header className="bg-dark text-white" closeButton>
@@ -79,3 +80,5 @@ const IndModal = ({ closeModal, isOpen, handleSubmit }) => {
 };
 
 export default IndModal;
+
+/* eslint-enable max-len, react/prop-types, jsx-a11y/label-has-associated-control */

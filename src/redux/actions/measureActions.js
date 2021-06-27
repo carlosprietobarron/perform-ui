@@ -7,7 +7,7 @@ import {
   CREATE_MEASURES_REQUEST,
   CREATE_MEASURES_FAILURE,
   CREATE_MEASURES_SUCCESS,
-} from "../types/measuresTypes";
+} from '../types/measuresTypes';
 
 const fetchMeasRequest = () => ({
   type: FETCH_MEASURES_REQUEST,
@@ -24,20 +24,17 @@ const fetchMeasFailure = (error) => ({
 });
 
 const fetchMeasures = () => (dispatch) => {
-  console.log("calling measures fetch");
   dispatch(fetchMeasRequest());
   const token = localStorage.getItem('token');
   return axios
     .get(`${BASEURL}/indicators`, {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
     })
     .then((response) => response.json())
     .then((response) => {
-      console.log("data returned");
-
       dispatch(fetchMeasSuccess(response));
     })
     .catch((err) => {
@@ -49,38 +46,36 @@ const createMeasRequest = () => ({
   type: CREATE_MEASURES_REQUEST,
 });
 
-const createMeasSuccess = response => ({
+const createMeasSuccess = (response) => ({
   type: CREATE_MEASURES_SUCCESS,
   payload: response,
 });
 
-const createMeasFailure = error => ({
+const createMeasFailure = (error) => ({
   type: CREATE_MEASURES_FAILURE,
   payload: error,
 });
 
-const createMeasure = (data, indId) => dispatch => {
-  alert(`${BASEURL}indicators/${indId}/measures`);
-  const token = localStorage.getItem('token')
+const createMeasure = (data, indId) => (dispatch) => {
+  // alert(`${BASEURL}indicators/${indId}/measures`);
+  const token = localStorage.getItem('token');
   dispatch(fetchMeasRequest());
-  
-  console.log(`${BASEURL}indicators/${indId}/measures`, data);
 
   return axios.post(`${BASEURL}indicators/${indId}/measures`, data, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
-    }
-  }).then(response => response.json())
-    .then(response => {
-      console.log("data returned");
-      
+    },
+  }).then((response) => response.json())
+    .then((response) => {
       dispatch(fetchMeasSuccess(response));
     })
-    .catch(err => {
+    .catch((err) => {
       dispatch(fetchMeasFailure(err));
     });
 };
 
-export { fetchMeasRequest, fetchMeasSuccess, fetchMeasFailure, fetchMeasures,
-  createMeasRequest, createMeasSuccess, createMeasFailure, createMeasure };
+export {
+  fetchMeasRequest, fetchMeasSuccess, fetchMeasFailure, fetchMeasures,
+  createMeasRequest, createMeasSuccess, createMeasFailure, createMeasure,
+};

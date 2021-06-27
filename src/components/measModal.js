@@ -1,26 +1,29 @@
-import React, { useState } from "react";
-import Modal from "react-bootstrap/Modal";
+/* eslint-disable max-len, react/prop-types, jsx-a11y/label-has-associated-control */
 
-const MeasModal = ({ indId, closeModal, isOpen, handleSubmit }) => {
-  const [day, setDay] = useState("");
+import React, { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+
+const MeasModal = ({
+  indId, closeModal, isOpen, handleSubmit,
+}) => {
+  const [day, setDay] = useState('');
   const [measure, setMeasure] = useState(0);
-  const [notes, setNotes] = useState("");
-  
+  const [notes, setNotes] = useState('');
+
   const handleFormSubmit = (event) => {
-    console.log("handle submit", day, measure, notes, indId);
     handleSubmit(day, measure, notes, indId);
     closeModal();
-    setDay("");
-    setNotes("");
-    setMeasure("");
+    setDay('');
+    setNotes('');
+    setMeasure('');
     event.preventDefault();
   };
 
   // const handleChange = () => {
   //   //const values = [...inputFields];
-    
+
   // };
-  
+
   return (
     <Modal show={isOpen} onHide={closeModal}>
       <Modal.Header className="bg-dark text-white" closeButton>
@@ -52,7 +55,7 @@ const MeasModal = ({ indId, closeModal, isOpen, handleSubmit }) => {
               placeholder="Enter the daiy ocurrencies"
               required
             />
-          </div>          
+          </div>
           <div className="form-group">
             <label htmlFor="notes">Notes</label>
             <textarea
@@ -83,3 +86,5 @@ const MeasModal = ({ indId, closeModal, isOpen, handleSubmit }) => {
 };
 
 export default MeasModal;
+
+/* eslint-enable max-len, react/prop-types, jsx-a11y/label-has-associated-control */

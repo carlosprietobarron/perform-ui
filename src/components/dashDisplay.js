@@ -1,17 +1,16 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import modalForm from '../components/modalForm';
+import modalForm from './modalForm';
 
 function DashDisplay({ dash }) {
   // const history = useHistory();
-  
-  const handleClick = ind_id => {
-   return (  
+
+  const handleClick = (ind_id) => (
     <modalForm />
   )
   //   //history.push(`/recipes/${recipe}`);
-  };
+  ;
 
   return (
     <div className="dash-card">
@@ -23,7 +22,7 @@ function DashDisplay({ dash }) {
           <h5>{dash.measure}</h5>
           <button type="button" className="btn" onClick={() => handleClick(1)}>
             Modal Form
-          </button> 
+          </button>
         </div>
       </div>
       <modalForm />

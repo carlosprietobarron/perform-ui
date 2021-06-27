@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
-import Carousel from "react-bootstrap/Carousel";
+/* eslint-disable max-len, react/prop-types, jsx-a11y/label-has-associated-control */
+
+import React, { useState, useEffect } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
 
 function ControlledCarousel({ indicators, handleChange }) {
   const [index, setIndex] = useState(0);
 
-  const handleSelect = (selectedIndex, e) => {
+  const handleSelect = (selectedIndex) => {
     setIndex(selectedIndex);
     handleChange(selectedIndex);
   };
 
   useEffect(() => {
-    //console.log(indicators);
+    // console.log(indicators);
   }, []);
 
-  
   function setCourousel(ind) {
-    //console.log("carousel item", ind)
     return (
       <Carousel.Item onSelect={handleSelect}>
         <img
@@ -30,9 +30,9 @@ function ControlledCarousel({ indicators, handleChange }) {
           </p>
         </Carousel.Caption>
       </Carousel.Item>
-    
+
     );
-  };
+  }
 
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
@@ -42,3 +42,5 @@ function ControlledCarousel({ indicators, handleChange }) {
 }
 
 export default ControlledCarousel;
+
+/* eslint-enable max-len, react/prop-types, jsx-a11y/label-has-associated-control */

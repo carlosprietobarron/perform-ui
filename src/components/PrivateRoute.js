@@ -1,13 +1,9 @@
-import React from 'react';
-import { Component } from 'react';
-import {Route, Redirect} from 'react-router-dom'
+import React, { Component } from 'react';
 
-const PrivateRoute = (isAuth, Component, ...rest) => {
-    return (
-        <div>
-            
-        </div>
-    )
-}
+import { Route, Redirect } from 'react-router-dom';
 
-export default PrivateRoute
+const PrivateRoute = (isAuth, Component, ...rest) => (
+  <div />
+);
+
+export default PrivateRoute;
