@@ -1,4 +1,4 @@
-/* eslint-disable max-len, react/prop-types, jsx-a11y/label-has-associated-control */
+/* eslint-disable max-len, react/prop-types, prefer-template */
 
 import React, { useState, useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
@@ -17,7 +17,7 @@ function ControlledCarousel({ indicators, handleChange }) {
 
   function setCourousel(ind) {
     return (
-      <Carousel.Item onSelect={handleSelect}>
+      <Carousel.Item id={'ind-' + ind.name} onSelect={handleSelect}>
         <img
           className="d-block w-100 img-half"
           src="https://i.ibb.co/N9W4h0b/coldcallsmall.jpg"
@@ -26,7 +26,7 @@ function ControlledCarousel({ indicators, handleChange }) {
         <Carousel.Caption>
           <h3 className="Dark-Text">{ind.name}</h3>
           <p className="Dark-Text">
-            Nulla vitae elit libero, a pharetra augue mollis interdum.
+            {ind.description}
           </p>
         </Carousel.Caption>
       </Carousel.Item>
@@ -43,4 +43,4 @@ function ControlledCarousel({ indicators, handleChange }) {
 
 export default ControlledCarousel;
 
-/* eslint-enable max-len, react/prop-types, jsx-a11y/label-has-associated-control */
+/* eslint-enable max-len, react/prop-types, prefer-template */

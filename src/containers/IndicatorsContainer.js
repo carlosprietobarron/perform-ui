@@ -165,8 +165,8 @@ function IndicatorsContainer(props) {
           </div>
 
           <div id="measure_menu" className="d-flex justify-content-between">
-            <button type="button" className="btn auth-btn-b" onClick={openModal}>
-              New Indicator
+            <button type="button" className="btn btn-outline-dark mt-3 text-white auth-btn-b" onClick={openModal}>
+              + New Indicator
             </button>
           </div>
           <ControlledCarousel
@@ -175,7 +175,7 @@ function IndicatorsContainer(props) {
           />
           <div className="chart-display col-md-12">
             <div id="btn-bar-measure" className="d-flex justify-content-between p-3">
-              <button type="button" className="btn auth-btn-b" onClick={openMeModal}>
+              <button type="button" className="btn btn-outline-dark mt-3 text-dark auth-btn-b" onClick={openMeModal}>
                 New Measure
               </button>
             </div>
