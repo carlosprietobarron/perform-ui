@@ -1,5 +1,5 @@
 body {
-  font-family: "Sans Serif";
+  font-family: "Sans Serif", "Arial";
   overflow-x: hidden;
 }
 
@@ -15,9 +15,9 @@ body {
   opacity: 0.5;
 }
 
-#intro{
-    width: 100%;
-    height: 50px;
+#intro {
+  width: 100%;
+  height: 50px;
 }
 
 .carousel-item {
@@ -33,7 +33,7 @@ body {
   overflow-y: hidden;
 }
 
-#charts-row{
+#charts-row {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -41,18 +41,19 @@ body {
 }
 
 @media (max-width: 769px) {
-  #charts-row{
+  #charts-row {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
   }
 }
+
 #gauge-div {
   text-align: center;
 }
 
-#progress-div{
+#progress-div {
   max-width: 130px;
   min-width: 130px;
   text-align: center;
@@ -67,12 +68,12 @@ body {
   overflow: hidden;
 }
 
-.navbar{
-  background-color:  #3c96f7;
+.navbar {
+  background-color: #3c96f7;
 }
 
 #measure_menu {
-  background-color:  #3c96f7;
+  background-color: #3c96f7;
 }
 
 #welcome {
@@ -80,15 +81,15 @@ body {
 }
 
 .signing-form {
-    width: 50%;
-    margin-left: 25%;
+  width: 50%;
+  margin-left: 25%;
 }
 
 @media (max-width: 910px) {
   .signing-form {
     width: 90%;
     margin-left: 5%;
-}
+  }
 }
 
 .signing-form-header {
@@ -104,9 +105,9 @@ body {
   .carousel-caption {
     bottom: -1.75rem !important;
   }
-  
+
   #welcome {
-    margin-top: 10;
+    margin-top: 10px;
     margin-left: 100px;
   }
 
